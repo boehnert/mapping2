@@ -1,0 +1,59 @@
+<html>
+<head>
+  <title>Leaflet Example</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+</head>
+<body>
+	<h2>
+		Leaflet example
+	</h2>
+     <div id="map" style="width: 600px; height: 400px"></div>
+	 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script>
+
+var map = L.map('map').setView([40.0176, -105.2797], 10);
+
+		L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+				'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+			id: 'examples.map-i875mjb7'
+		}).addTo(map);
+
+
+		L.marker([40.0176, -105.2797]).addTo(map)
+			.bindPopup("<b>Hello world!</b><br />I am a popup in Boulder.").openPopup();
+		
+		L.circle([40.1, -105.25], 500, {
+			color: 'red',
+			fillColor: '#f03',
+			fillOpacity: 0.5
+		}).addTo(map).bindPopup("I am a circle.");
+
+		L.polygon([
+			[40.05, -105.1],
+			[40.1, -105.2],
+			[39.95, -105.2]
+		]).addTo(map).bindPopup("I am a polygon.");
+
+	
+		
+		var popup = L.popup();
+
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent("You clicked the map at " + e.latlng.toString())
+				.openOn(map);
+		}
+
+		map.on('click', onMapClick);
+
+
+
+</script>
+
+</body>
+</html>
